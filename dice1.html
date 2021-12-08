@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dice</title>
+</head>
+<body>
+    
+    Player1: <input type="text"  value="Guna" class ="player" >
+       guess1 = <input type="text" value = "1" class="guess"> <br><br>
+    Player2: <input type="text"  value="Priya" class ="player">
+       guess2 = <input type="text"  value = "2" class="guess"> <br><br>
+    Player3: <input type="text" value="Bharath" class ="player">
+       guess3 = <input type="text" value = "5" class="guess"> <br><br>
+    Player4: <input type="text" value="Manoj" class ="player">
+       guess4 = <input type="text" value = "2" class="guess"> <br><br>
+    Player5: <input type="text" value="Mahendar" class ="player">
+       guess5 = <input type="text" value = "6" class="guess"> <br><br>
+
+    <button>Roll the dice</button>
+    <div class="result"></div>
+   
+    <script>
+       players = document.getElementsByClassName("player");
+       guesses = document.getElementsByClassName("guess");
+       result = document.getElementsByClassName("result")[0];
+       button = document.querySelector("button");
+
+       player = []
+       for(t of players){
+          player.push(t.value)
+       }
+       console.log(player)
+       guess = []
+       for(t of guesses){
+          guess.push(t.value)
+       }
+       console.log("Guesses", guess)
+       score = []
+       for(i = 0; i<=player.length; i++){
+          score[i] = 0
+       }
+
+       button. addEventListener("click", rollTheDice)
+
+       function rollTheDice(){
+
+          // all pssoible vlaues of dice
+            choices = [1,2,3,4,5,6]
+
+            // randomly selecting one value
+            dice_roll = choices[parseInt(Math.random()*choices.length)]
+
+            // updating score
+            flag = 0
+            for(i = 0; i<guess.length; i++){
+               if(guess[i] == dice_roll){
+                  score[i] = score[i]+1
+                  flag = 1
+               }
+            }
+            // if no one won
+            if(flag == 0){
+               score[score.length-1]++
+            }
+
+            // displaying result
+            result.innerText = `
+             ${player[0]}: ${score[0]}
+             ${player[1]}: ${score[1]}
+             ${player[2]}: ${score[2]}
+             ${player[3]}: ${score[3]}
+             ${player[4]}: ${score[4]}
+             "No result": ${score[5]}
+            
+            `
+
+       }
+
+    </script>
+
+
+</body>
+</html>
